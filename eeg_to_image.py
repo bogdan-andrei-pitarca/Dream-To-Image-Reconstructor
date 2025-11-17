@@ -31,10 +31,10 @@ OUT.mkdir(parents=True, exist_ok=True)
 
 IMG_SIZE = 64
 CATEGORIES = ["circle", "square", "triangle"]
-SAMPLES_PER_CAT = 200        # small for a quick demo (increase for larger experiments)
+SAMPLES_PER_CAT = 200
 EEG_CHANNELS = 8
-FS = 128                   # sampling frequency (Hz)
-DURATION = 0.5             # seconds
+FS = 128
+DURATION = 0.5
 SNR_DB = 10
 EMB_DIM = 16
 BATCH_SIZE = 8
@@ -72,10 +72,10 @@ for cat in CATEGORIES:
         img = np.clip(img, 0.0, 1.0)
         images.append(img)
         labels.append(cat)
-images = np.stack(images)    # shape: (N, H, W)
+images = np.stack(images)
 labels = np.array(labels)
 
-# Save a small montage (for the report)
+
 def save_montage(images, path, rows=3, cols=5):
     fig, axs = plt.subplots(rows, cols, figsize=(cols*1.6, rows*1.2))
     idx = 0
@@ -142,7 +142,6 @@ for i in range(len(images)):
 eegs = np.stack(eegs)
 embs = np.stack(embs)
 
-# save a tiny EEG snippet plot
 fig, ax = plt.subplots(3,1, figsize=(8,3))
 for ch in range(3):
     ax[ch].plot(eegs[0,ch,:100]); ax[ch].set_ylabel(f"ch{ch}")
